@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Joshu ❤️</title>
+<style>
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Comic Sans MS", cursive;
+  background: linear-gradient(to bottom right, #ff758c, #ff7eb3);
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+.page { display: none; padding: 24px; }
+.active { display: block; }
+h1 { font-size: 2.1rem; margin-bottom: 8px; }
+p { font-size: 1.05rem; margin-bottom: 12px; }
+button { padding: 12px 22px; font-size: 1rem; border: none; border-radius: 999px; cursor: pointer; margin: 8px; white-space: nowrap; }
+.yes { background: #ff2e63; color: #fff; }
+.choice { background: rgba(255,255,255,0.18); color: #fff; border: 1px solid rgba(255,255,255,0.35); }
+.no { background: #333; color: #fff; position: absolute; animation: shake 0.4s infinite; }
+@keyframes shake { 0%{transform:translateX(0);}25%{transform:translateX(-3px);}50%{transform:translateX(3px);}75%{transform:translateX(-3px);}100%{transform:translateX(0);} }
+.card { background: rgba(255,255,255,0.14); border-radius: 18px; padding: 16px; max-width: 520px; margin: 0 auto 12px; }
+.choices { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 10px; }
+.gallery img { width: 45vw; max-width: 160px; height: auto; border-radius: 16px; object-fit: cover; }
+/* Envelope */
+.envelope { width: 240px; height: 150px; margin: 0 auto 14px; background: #ff4d6d; border-radius: 12px; position: relative; cursor: pointer; overflow: hidden; }
+.flap { position: absolute; top: 0; left: 0; right: 0; height: 75px; background: #ff2e63; transform-origin: top; transition: transform 0.6s ease; }
+.letter { position: absolute; bottom: -120%; left: 10px; right: 10px; background: white; color: #ff2e63; border-radius: 10px; padding: 12px; transition: bottom 0.6s ease; font-weight: 600; line-height: 1.4; font-size: 0.95rem; }
+/* Confetti */
+.confetti-piece { position: fixed; width: 10px; height: 10px; background: white; opacity: 0.9; pointer-events: none; z-index: 9999; }
+/* Hearts */
+.heart { position: fixed; bottom: -10px; font-size: 18px; animation: float 6s linear infinite; opacity: 0.85; pointer-events: none; }
+@keyframes float { from{transform:translateY(0);} to{transform:translateY(-110vh);} }
+.open .flap { transform: rotateX(160deg); }
+.open .letter { bottom: 10px; }
+@media(max-width:480px){h1{font-size:1.9rem;}p{font-size:0.98rem;}button{padding:10px 18px;font-size:0.95rem;}}
+</style>
+</head>
+<body>
+
+<!-- Romantic music (looping) -->
+<audio autoplay loop>
+<source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+</audio>
+
+<!-- PAGE 0: Envelope -->
+<div class="page active" id="page0">
+<h1>Open your letter, Joshu 💌</h1>
+<div class="envelope" id="envelope">
+  <div class="flap"></div>
+  <div class="letter">
+    I’ve loved you so much, I am loving you every second and I will continue to love you forever.<br><br>
+    You matter to me and I hope to have you by my side forever, my love. 💖
+  </div>
+</div>
+<button class="yes" onclick="goPage(1)">Open it ✨</button>
+</div>
+
+<!-- PAGE 1: Original “Will you be my Valentine?” -->
+<div class="page" id="page1">
+<h1>Will you be my Valentine? ❤️</h1>
+<button class="yes" onclick="goPage(2)">Yes 💘</button>
+<button class="no">No 🙈</button>
+</div>
+
+<!-- PAGE 2-6: 5 interactive cute questions -->
+<div class="page" id="page2">
+<h1>Question 1 😏</h1>
+<p>Do you know you’re my favorite person?</p>
+<button class="yes" onclick="goPage(3)">Yes 💘</button>
+<button class="no">No 🙈</button>
+</div>
+
+<div class="page" id="page3">
+<h1>Question 2 💞</h1>
+<p>Do you promise to always steal my fries?</p>
+<button class="yes" onclick="goPage(4)">Always 😌</button>
+<button class="no">No 🍟</button>
+</div>
+
+<div class="page" id="page4">
+<h1>Question 3 💖</h1>
+<p>Will you hold my hand when we walk together?</p>
+<button class="yes" onclick="goPage(5)">Of course 🤝</button>
+<button class="no">No 🙃</button>
+</div>
+
+<div class="page" id="page5">
+<h1>Valentine’s Plan 💌</h1>
+<p>What do you want to do on Valentine’s Day?</p>
+<div class="choices">
+<button class="choice" onclick="goPage(6)">🎬 Movie date</button>
+<button class="choice" onclick="goPage(6)">🏖 Beach</button>
+<button class="choice" onclick="goPage(6)">🕹 Arcade</button>
+<button class="choice" onclick="goPage(6)">🧺 Picnic date</button>
+</div>
+</div>
+
+<div class="page" id="page6">
+<h1>Question 5 💗</h1>
+<p>Can I be your favorite person too?</p>
+<button class="yes" onclick="goPage(7)">Always you 🥹</button>
+<button class="no">Nope 😜</button>
+</div>
+
+<!-- PAGE 7: Yay -->
+<div class="page" id="page7">
+<h1>YAYYYY 😭❤️</h1>
+<div class="card">You choosing me will always be my favorite thing. Thank you for being you 💕</div>
+<button class="yes" onclick="goPage(8)">One last thing 😘</button>
+</div>
+
+<!-- PAGE 8: Reasons + Photos + confetti -->
+<div class="page" id="page8">
+<h1>Reasons I Love You 💖</h1>
+<div class="card">
+<ul style="text-align:left;">
+<li>You make my bad days better instantly</li>
+<li>You make me feel safe and loved</li>
+<li>You’re my best friend</li>
+<li>You understand me like no one else</li>
+<li>I choose you. Always. ❤️</li>
+</ul>
+</div>
+
+<h2>Us 🥰</h2>
+<div class="gallery">
+<img src="IMG_3810.jpeg" alt="Us 1">
+<img src="IMG_0546.jpeg" alt="Us 2">
+<img src="FullSizeRender.jpeg" alt="Us 3">
+</div>
+</div>
+
+<script>
+// No buttons run away
+document.addEventListener("mouseover", (e)=>{
+if(e.target && e.target.classList.contains("no")){
+const btn=e.target;
+const x=Math.random()*(window.innerWidth-btn.offsetWidth);
+const y=Math.random()*(window.innerHeight-btn.offsetHeight);
+btn.style.left=x+"px";
+btn.style.top=y+"px";
+}});
+
+// Navigate pages
+function goPage(n){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById("page"+n).classList.add("active");
+if(n===8) launchConfetti();
+}
+
+// Envelope animation
+const envelope=document.getElementById("envelope");
+envelope.addEventListener("click",()=>{envelope.classList.toggle("open");});
+
+// Floating hearts
+setInterval(()=>{
+const heart=document.createElement("div");
+heart.className="heart";
+heart.textContent="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*14+14)+"px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
+},350);
+
+// Confetti
+function launchConfetti(){
+for(let i=0;i<200;i++){
+const confetti=document.createElement("div");
+confetti.className="confetti-piece";
+confetti.style.left=Math.random()*100+"vw";
+confetti.style.top=Math.random()*-20+"px";
+confetti.style.backgroundColor=`hsl(${Math.random()*360},100%,70%)`;
+document.body.appendChild(confetti);
+let fallSpeed=Math.random()*3000+3000;
+confetti.animate([{transform:"translateY(0px)"},{transform:"translateY(100vh)"}],{duration:fallSpeed,iterations:1});
+setTimeout(()=>confetti.remove(),fallSpeed);
+}}
+</script>
+</body>
+</html>
